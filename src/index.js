@@ -1,11 +1,5 @@
-import Local from './local';
-import Session from './session';
-import Cookie from './cookie';
+import { default as CookieStore } from './cookie';
 
-const Store = {
-  Local,
-  Session,
-  Cookie: new Cookie()
-};
-
-export default Store;
+export { default as Local } from './local';
+export { default as Session } from './session';
+export const Cookie = new CookieStore();
