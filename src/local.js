@@ -29,4 +29,8 @@ export default {
     }
     return localStorage.removeItem(keyHash(key));
   },
+
+  clear() {
+    localStorage.clear();
+  }
 };

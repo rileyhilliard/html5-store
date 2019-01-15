@@ -39,4 +39,8 @@ export default {
     }
     return sessionStorage.removeItem(keyHash(key));
   },
+
+  clear() {
+    sessionStorage.clear();
+  }
 };

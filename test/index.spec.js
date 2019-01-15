@@ -91,6 +91,24 @@ describe('Local Storage should remove items', () => {
   });
 });
 
+describe('Local Storage cache is cleared on clear()', () => {
+  before(() => {
+    Local.set('bill', bill);
+    Local.set('steve', steve);
+    Local.clear();
+  });
+
+  describe('the cookie cache is correct', () => {
+    it('bill should be cleared', () => {
+      expect(Local.get('bill')).to.be.equal(false);
+    });
+
+    it('steve should be cleared', () => {
+      expect(Local.get('steve')).to.be.equal(false);
+    });
+  });
+});
+
 /* SESSION STORAGE */
 describe('Session Storage should behave as expected', () => {
   before(() => {
@@ -149,6 +167,24 @@ describe('Session Storage should remove items', () => {
 
     it('has steve', () => {
       expect(Session.get('steve')).to.eql(steve);
+    });
+  });
+});
+
+describe('Session Storage cache is cleared on clear()', () => {
+  before(() => {
+    Session.set('bill', bill);
+    Session.set('steve', steve);
+    Session.clear();
+  });
+
+  describe('the cookie cache is correct', () => {
+    it('bill should be cleared', () => {
+      expect(Session.get('bill')).to.be.equal(false);
+    });
+
+    it('steve should be cleared', () => {
+      expect(Session.get('steve')).to.be.equal(false);
     });
   });
 });
