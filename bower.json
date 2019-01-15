@@ -1,0 +1,24 @@
+{
+  "name": "html5-store",
+  "main": "dist/html5-store.min.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/rileyhilliard/html5-store",
+  "authors": [
+    "Riley Hilliard <rileyhilliard@gmail.com>"
+  ],
+  "description": "A more user-friendly way to interact with various HTML5 storage libraries",
+  "keywords": [
+    "localstorage",
+    "local-storage",
+    "store",
+    "html5-store",
+    "session-storage",
+    "sessionstorage",
+    "cookie",
+    "cookies"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*"
+  ]
+}
