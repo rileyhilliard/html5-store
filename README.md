@@ -1,16 +1,26 @@
-# store
-Browser storage API's are a great way to store local state that you don't need
+# html5-store
+Browser storage API's are a great way to store local state when you don't need
 to persist to a database, however they are more verbose than they need to be.
 `LocalStorage` and `SessionStorage` can only store strings, so storing objects
 requires manual `JOSN.stringify()` / `JSON.parse()` when setting and getting data.
 It would be great if this was done automatically.
+
 Well now it is! With a more streamlined wrapper around these browser API's, `html5-store`
 is able to automatically handle things like JSON stringify/parse when setting
 and getting data, as well as provide handy utilities like clear key formatting
 so you can tell what utility set your local state.
+
 Cookie storage has always been unnecessarily verbose, and `html5-store` cleans
 up the Cookie API to behave as a developer would expect with simple `.get()`,
 `.set()` and `.remove()` methods.
+
+## Installation
+```
+npm install html5-store
+```
+```
+yarn add html5-store
+```
 
 ## Local Storage Example
 ```javascript
