@@ -1,6 +1,6 @@
 {
   "name": "html5-store",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "A more user-friendly way to interact with various HTML5 storage libraries",
   "main": "src/index.js",
   "repository": {
