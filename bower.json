@@ -1,7 +1,7 @@
 {
   "name": "html5-store",
   "main": "dist/html5-store.min.js",
-  "version": "1.0.0",
+  "version": "1.0.10",
   "homepage": "https://github.com/rileyhilliard/html5-store",
   "authors": [
     "Riley Hilliard <rileyhilliard@gmail.com>"

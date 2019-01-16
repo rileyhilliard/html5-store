@@ -35,6 +35,20 @@ describe('Local Storage should behave as expected', () => {
     fetchedBill = Local.get('bill');
   });
 
+  describe('Local Storage expected errors are thrown', () => {
+    it('.get() without a key should throw an error', () => {
+      expect(Local.get).to.throw('.get(\'key\') requires a key to look up data');
+    });
+
+    it('.set() without a key should throw an error', () => {
+      expect(Local.set).to.throw('.set(\'key\', \'{ data }\') needs a key to set data');
+    });
+
+    it('.remove() without a key should throw an error', () => {
+      expect(Local.remove).to.throw('.remove(\'key\') requires a key to remove data');
+    });
+  });
+
   describe('The Local util type is correct', () => {
     it('should be an object', () => {
       expect(typeof Local).to.be.equal('object');
@@ -70,6 +84,23 @@ describe('Local Storage should behave as expected', () => {
       expect(fetchedBill).to.eql(bill);
     });
   });
+
+  describe('Local Storage can store multiple data types', () => {
+    const SKEY = 'stringKey';
+    const SVAL = 'string value';
+    const NKEY = 'numberKey';
+    const NVAL = 24;
+    Local.set(SKEY, SVAL);
+    Local.set(NKEY, NVAL);
+
+    it('should store a string', () => {
+      expect(Local.get(SKEY)).to.be.equal(SVAL);
+    });
+
+    it('should store a number', () => {
+      expect(Local.get(NKEY)).to.be.equal(NVAL);
+    });
+  });
 });
 
 describe('Local Storage should remove items', () => {
@@ -82,7 +113,7 @@ describe('Local Storage should remove items', () => {
 
   describe('set properties are removed', () => {
     it('does not have bill', () => {
-      expect(Local.get('bill')).to.be.equal(false);
+      expect(Local.get('bill')).to.be.equal(null);
     });
 
     it('has steve', () => {
@@ -100,11 +131,11 @@ describe('Local Storage cache is cleared on clear()', () => {
 
   describe('the cookie cache is correct', () => {
     it('bill should be cleared', () => {
-      expect(Local.get('bill')).to.be.equal(false);
+      expect(Local.get('bill')).to.be.equal(null);
     });
 
     it('steve should be cleared', () => {
-      expect(Local.get('steve')).to.be.equal(false);
+      expect(Local.get('steve')).to.be.equal(null);
     });
   });
 });
@@ -114,6 +145,20 @@ describe('Session Storage should behave as expected', () => {
   before(() => {
     Session.set('bill', bill);
     fetchedBill = Session.get('bill');
+  });
+
+  describe('Session Storage expected errors are thrown', () => {
+    it('.get() without a key should throw an error', () => {
+      expect(Local.get).to.throw('.get(\'key\') requires a key to look up data');
+    });
+
+    it('.set() without a key should throw an error', () => {
+      expect(Local.set).to.throw('.set(\'key\', \'{ data }\') needs a key to set data');
+    });
+
+    it('.remove() without a key should throw an error', () => {
+      expect(Local.remove).to.throw('.remove(\'key\') requires a key to remove data');
+    });
   });
 
   describe('The Session util type is correct', () => {
@@ -151,6 +196,23 @@ describe('Session Storage should behave as expected', () => {
       expect(fetchedBill).to.eql(bill);
     });
   });
+
+  describe('Session Storage can store multiple data types', () => {
+    const SKEY = 'stringKey';
+    const SVAL = 'string value';
+    const NKEY = 'numberKey';
+    const NVAL = 24;
+    Session.set(SKEY, SVAL);
+    Session.set(NKEY, NVAL);
+
+    it('should store a string', () => {
+      expect(Session.get(SKEY)).to.be.equal(SVAL);
+    });
+
+    it('should store a number', () => {
+      expect(Session.get(NKEY)).to.be.equal(NVAL);
+    });
+  });
 });
 
 describe('Session Storage should remove items', () => {
@@ -162,7 +224,7 @@ describe('Session Storage should remove items', () => {
 
   describe('removed properties are removed', () => {
     it('does not have bill', () => {
-      expect(Session.get('bill')).to.be.equal(false);
+      expect(Session.get('bill')).to.be.equal(null);
     });
 
     it('has steve', () => {
@@ -180,11 +242,11 @@ describe('Session Storage cache is cleared on clear()', () => {
 
   describe('the cookie cache is correct', () => {
     it('bill should be cleared', () => {
-      expect(Session.get('bill')).to.be.equal(false);
+      expect(Session.get('bill')).to.be.equal(null);
     });
 
     it('steve should be cleared', () => {
-      expect(Session.get('steve')).to.be.equal(false);
+      expect(Session.get('steve')).to.be.equal(null);
     });
   });
 });

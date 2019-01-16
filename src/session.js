@@ -1,46 +1,43 @@
-import { keyHash } from './utils';
-
+import {
+  keyHash,
+  GET_KEY_ERROR,
+  SET_KEY_ERROR,
+  REMOVE_KEY_ERROR,
+} from './utils';
 const { sessionStorage } = window;
 
-export default {
-  get(key, includeMeta = false) {
+export default class Session {
+  get(key) {
     if (!key) {
-      throw new Error('We need a key to look up data from Session Storage');
+      throw new Error(GET_KEY_ERROR);
     }
     const item = sessionStorage.getItem(keyHash(key));
-    const parsedJSON = item ? JSON.parse(item) : false;
-    if (parsedJSON) {
-      return includeMeta ? parsedJSON : parsedJSON.data;
-    }
 
-    return false;
-  },
+    return item && JSON.parse(item).data;
+  }
 
   set(key, data) {
     if (!key) {
-      throw new Error('We need a key to set data to Session Storage');
+      throw new Error(SET_KEY_ERROR);
     }
-    if (!(typeof data === 'object' || typeof data === 'string')) {
-      throw new Error(`We can only store JS objects or stings to Session Storage. '${typeof data}' was passed in.`);
-    }
-    const dataString = `{
-      "data": ${typeof data === 'object' ? JSON.stringify(data) : data},
-      "meta": {
-        "timestamp": ${Date.now()}
-      }
-    }`;
 
-    return sessionStorage.setItem(keyHash(key), dataString);
-  },
+    const obj = {
+      timestamp: Date.now(),
+      data
+    };
+
+    return sessionStorage.setItem(keyHash(key), JSON.stringify(obj));
+  }
 
   remove(key) {
     if (!key) {
-      throw new Error('We need a key to look up data from Local Storage');
+      throw new Error(REMOVE_KEY_ERROR);
     }
+
     return sessionStorage.removeItem(keyHash(key));
-  },
+  }
 
   clear() {
     sessionStorage.clear();
   }
-};
+}
